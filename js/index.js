@@ -1,7 +1,7 @@
 
 //funcion para generar fechas aleatorias dentro de un rango
 
-function randomTime() {
+function randomTime(cantidadDias=5) {
     var fechaInicial=document.getElementById("fechaInicial").value;
     var fechaFinal=document.getElementById("fechaFinal").value;
     inicial=fechaInicial.split("-");
@@ -9,13 +9,15 @@ function randomTime() {
         // obtenemos las fechas en milisegundos
         var dateStart=new Date(inicial[0],(inicial[1]-1),inicial[2]);
         var dateEnd=new Date(final[0],(final[1]-1),final[2]);
-        for(let i=0;i<5;i++){
+        feriados=[];
+        for(let i=0;i<cantidadDias;i++){
     var diff =  dateEnd.getTime() - dateStart.getTime();
     var new_diff = diff * Math.random();
     var date = new Date(dateStart.getTime() + new_diff);
     console.log(date);
+   
     feriados.push(date);
-    
+   
     }
 }
 //funcion para saber que feriados caen en semana
@@ -36,7 +38,8 @@ for(let i=0;i<feriados.length;i++){
         }
 
 }
-document.getElementById("result").innerHTML="lunes a viernes feriados "+count;
+return count;
+
 
 }
 //validador de fecha
@@ -74,7 +77,7 @@ function calcularDias()
 {
     var fechaInicial=document.getElementById("fechaInicial").value;
     var fechaFinal=document.getElementById("fechaFinal").value;
-    var resultado="";
+    var resultado=0;
     if(validate_fecha(fechaInicial) && validate_fecha(fechaFinal))
     {
         inicial=fechaInicial.split("-");
@@ -101,7 +104,7 @@ function calcularDias()
         if(!validate_fecha(fechaFinal))
             alert("La fecha final es incorrecta");
     }
-    document.getElementById("resultado").innerHTML="Total de dias"+" "+resultado;
+    return resultado;
 
 }
  
@@ -129,21 +132,29 @@ function contadorSabadosYDomingos(){
     dtInicial = new Date(dtInicial.getTime()+86400000);// se agrega un dia
     
     }
-    document.getElementById("contador").innerHTML="Sabados y Domingos"+" "+contadorDias;
+    return contadorDias;
     
     }
    
 function diasLaborables(resultado,count, contadorDias){
-    parseInt(resultado);
-    parseInt(count);
-    parseInt(contadorDias);
-console.log(count);
-console.log(resultado);
-console.log(contadorDias);
-    var diasLaborables=resultado-(count+contadorDias);
+   
+
+    return resultado-(count+contadorDias);
 
 
- document.getElementById("laborables").innerHTML="Los dias laborables son: "+ diasLaborables;
+ 
+}
+function getDias(){
+    randomTime(7);
+   let totalDias=calcularDias(); 
+   let contadorFinesdeSemana=contadorSabadosYDomingos(); 
+   let feriados= feriadosCount(); 
+   let diasLab=diasLaborables(totalDias,feriados,contadorFinesdeSemana);
+   document.getElementById("resultado").innerHTML="Total de dias"+" "+totalDias;
+   document.getElementById("contador").innerHTML="Sabados y Domingos"+" "+contadorFinesdeSemana;
+   document.getElementById("result").innerHTML="lunes a viernes feriados "+feriados;
+   document.getElementById("laborables").innerHTML="Los dias laborables son: "+ diasLab;
+
 }
 
 

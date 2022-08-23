@@ -14,7 +14,7 @@ function randomTime(cantidadDias=5) {
     var diff =  dateEnd.getTime() - dateStart.getTime();
     var new_diff = diff * Math.random();
     var date = new Date(dateStart.getTime() + new_diff);
-    console.log(date);
+    
    
     feriados.push(date);
    
@@ -34,7 +34,7 @@ for(let i=0;i<feriados.length;i++){
         }else{
             
             count++;
-            console.log("feriado en semana : "+count+" "+feriados[i]);
+           
         }
 
 }
@@ -112,21 +112,16 @@ function calcularDias()
 function contadorSabadosYDomingos(){
     var fechaInicial=document.getElementById("fechaInicial").value;
     var fechaFinal=document.getElementById("fechaFinal").value;
-    console.log(fechaInicial);
-    console.log(fechaFinal);
+   
     fechaInicial = fechaInicial.split("-");
     fechaFinal = fechaFinal.split("-");
-    
-    console.log(fechaInicial);
-    console.log(fechaFinal);
-    
-    
+
     var dtInicial = new Date(fechaInicial[0], fechaInicial[1]-1, fechaInicial[2]);
     var dtFinal =new Date(fechaFinal[0], fechaFinal[1]-1, fechaFinal[2]);
-     var contadorDias = 0;
+    var contadorDias = 0;
     while(dtInicial <=dtFinal){
         if(dtInicial.getDay()===0||dtInicial.getDay()===6){
-        console.log("dia contado:"+dtInicial);
+       
         contadorDias++;
         }
     dtInicial = new Date(dtInicial.getTime()+86400000);// se agrega un dia
@@ -135,7 +130,7 @@ function contadorSabadosYDomingos(){
     return contadorDias;
     
     }
-   
+   //calculo dias laborables
 function diasLaborables(resultado,count, contadorDias){
    
 
@@ -144,6 +139,7 @@ function diasLaborables(resultado,count, contadorDias){
 
  
 }
+//llamo a todas las funciones desde aca
 function getDias(){
     randomTime(7);
    let totalDias=calcularDias(); 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <form>
+        <p>Introduce la fecha inicial y final en formato español dd/mm/yyyy</p>
+        <input type="date" name="fechaInicial" id="fechaInicial" >
+        <input type="date" name="fechaFinal" id="fechaFinal">
+     
+        <input type="button" value="Calcular dias" onclick="calcularDias(); contadorSabadosYDomingos(); randomTime(); feriadosCount(); diasLaborables()">
+    </form>
+    <div id="resultado"></div>
+   
+    <div id="contador"></div>
+
+    <div id="result"></div>
+    <div id="laborables"></div>
+    <script src="js/index.js"></script>
+</body>
+</html>
